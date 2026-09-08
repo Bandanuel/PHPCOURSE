@@ -8,6 +8,9 @@
 </head>
 <body>
     <?php
+    session_start();
+    echo session_id();
+    echo session_name();
     // ПЕРВАЯ ПРОГА НА ПХП
     echo "Шалом, ПХП!";
 
@@ -60,6 +63,8 @@
 
     $number = array();
     $number = [];
+
+    
     ?>
 
     <form method="GET">
