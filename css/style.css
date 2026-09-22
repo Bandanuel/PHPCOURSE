@@ -1,0 +1,306 @@
+/* Подключаем жирные шрифты в стиле комиксов и ретро-игр */
+@import url('https://googleapis.com');
+
+:root {
+    --bg-sewer: #231f20;       /* Цвет темного подземелья */
+    --ooze-green: #39ff14;     /* Радиоактивный мутаген (зеленый) */
+    --pizza-crust: #ffb703;    /* Цвет корочки пиццы (оранжево-желтый) */
+    --krang-pink: #ff5d8f;     /* Розовый цвет Крэнга / Шреддера */
+    
+    /* Цвета повязок черепашек для карточек */
+    --leo-blue: #00b4d8;
+    --raph-red: #e63946;
+    --donnie-purple: #9b5de5;
+    --mikey-orange: #f77f00;
+    
+    --comic-border: #000000;   /* Жирный контур комикса */
+}
+
+body {
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(57, 255, 20, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 93, 143, 0.1) 0%, transparent 50%),
+        var(--bg-sewer);
+    color: #fff;
+    font-family: 'Unbounded', sans-serif;
+    padding: 20px;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Главный заголовок: Эффект логотипа мультсериала */
+.beanie h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ooze-green);
+    /* Стальной объемный контур как в комиксах */
+    text-shadow: 
+        -3px -3px 0 var(--comic-border),  
+         3px -3px 0 var(--comic-border),
+        -3px  3px 0 var(--comic-border),
+         3px  3px 0 var(--comic-border),
+         6px  6px 0px var(--krang-pink),
+        12px 12px 0px var(--comic-border);
+    transform: rotate(-3deg) skewX(-5deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.beanie h1:hover {
+    transform: rotate(1deg) scale(1.05);
+    color: var(--pizza-crust);
+}
+
+/* Панель фильтров: Стилизуем под секретный терминал Донателло */
+.beanie-foot {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: #1a1a1a;
+    border: 5px solid var(--comic-border);
+    box-shadow: 8px 8px 0px var(--donnie-purple);
+    border-radius: 0px;
+    margin-bottom: 50px;
+    position: relative;
+}
+select, input[type="search"] {
+    height: 48px;
+    width: 260px;
+    border-radius: 0px; /* Никаких «зализанных» углов, только хардкор */
+    background-color: #fff;
+    color: #000;
+    
+    /* Жирный черный контур, как маркер художника */
+    border: 4px solid var(--comic-border); 
+    
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 0 15px;
+    
+    /* Ультра-комиксный эффект: легкий наклон формы (параллакс) */
+    transform: skewX(-10deg); 
+    
+    /* Густая неоново-зеленая тень мутагена */
+    box-shadow: 6px 6px 0px var(--ooze-green); 
+    
+    transition: all 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    cursor: pointer;
+}
+
+/* Стилизуем плейсхолдер инпута под шрифт комиксов */
+input[type="search"]::placeholder {
+    color: #777;
+    font-style: italic;
+}
+
+/* Эффект фокуса и наведения: инпут выпрямляется и взрывается цветом пиццы! */
+select:hover, input[type="search"]:hover,
+select:focus, input[type="search"]:focus {
+    outline: none;
+    background-color: var(--pizza-crust); /* Оранжево-желтый при наведении */
+    color: #000;
+    
+    /* Инпут «выпрямляется», создавая динамику при наборе текста */
+    transform: skewX(0deg) scale(1.05); 
+    
+    /* Тень становится еще жирнее и меняет цвет на фиолетовый Донателло */
+    box-shadow: 8px 8px 0px var(--donnie-purple); 
+}
+
+/* Экстремальный клик по селекту */
+select:active {
+    transform: skewX(0deg) translate(4px, 4px);
+    box-shadow: 2px 2px 0px var(--comic-border);
+}
+
+/* Красиво стилизуем выпадающий список (опции) внутри селекта */
+select option {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: bold;
+}
+
+
+select, input[type="search"] {
+    height: 45px;
+    width: 250px;
+    border-radius: 0px;
+    background-color: #fff;
+    color: #000;
+    border: 4px solid var(--comic-border);
+    font-family: inherit;
+    font-weight: bold;
+    padding: 0 10px;
+    box-shadow: 5px 5px 0px var(--ooze-green);
+    transition: all 0.1s ease;
+}
+
+select:focus, input:focus {
+    outline: none;
+    box-shadow: 2px 2px 0px var(--comic-border);
+    transform: translate(3px, 3px);
+    background-color: var(--ooze-green);
+}
+
+/* Сетка товаров */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Карточки: Стиль страниц комикса с индивидуальными цветами повязок */
+.product-card {
+    padding: 25px;
+    background: var(--krang-pink); /* Базовый цвет Крэнга */
+    color: #000;
+    border: 5px solid var(--comic-border);
+    box-shadow: 12px 12px 0px var(--comic-border);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+/* Каждая карточка получает случайный боевой наклон */
+.product-card:nth-child(4n+1) { transform: rotate(-1.5deg); box-shadow: 12px 12px 0px var(--leo-blue); }
+.product-card:nth-child(4n+2) { transform: rotate(2deg); box-shadow: 12px 12px 0px var(--raph-red); }
+.product-card:nth-child(4n+3) { transform: rotate(-1deg); box-shadow: 12px 12px 0px var(--donnie-purple); }
+.product-card:nth-child(4n+4) { transform: rotate(2.5deg); box-shadow: 12px 12px 0px var(--mikey-orange); }
+
+/* Эффект удара при наведении (Атака ниндзя!) */
+.product-card:hover {
+    transform: rotate(0deg) scale(1.05) translateY(-5px);
+    box-shadow: 15px 15px 0px var(--ooze-green) !important;
+    border-color: var(--ooze-green);
+    z-index: 5;
+}
+
+/* Текстура пиццы на заднем фоне карточки */
+.product-card::before {
+    content: "🍕";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 2.5rem;
+    transform: rotate(15deg);
+    opacity: 0.3;
+    transition: transform 0.3s ease;
+}
+.product-card:hover::before {
+    transform: rotate(-45deg) scale(1.2);
+}
+
+.product-card h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    margin-top: 0;
+    color: #000;
+    text-transform: uppercase;
+    border-bottom: 4px dashed var(--comic-border);
+    padding-bottom: 5px;
+}
+
+.product-card p {
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.5);
+    padding: 3px 8px;
+    display: inline-block;
+    border: 2px solid var(--comic-border);
+    margin: 5px 0;
+}
+
+/* Кнопка "Заказать": Стилизована под боевую кнопку */
+button {
+    height: 55px;
+    width: 100%;
+    border-radius: 0px;
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: var(--ooze-green);
+    color: #000;
+    border: 4px solid var(--comic-border);
+    box-shadow: 6px 6px 0px var(--comic-border);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: var(--pizza-crust);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--comic-border);
+}
+
+/* Физическое утапливание кнопки при клике */
+button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px var(--comic-border);
+}
+
+/* Сумма заказа: Выглядит как Канализационный Люк / Огромный токен */
+h1:has(+ form), main > h1:last-of-type {
+    font-family: 'Bangers', cursive;
+    font-size: 3.5rem;
+    color: #fff;
+    background: #000;
+    padding: 20px 40px;
+    border: 6px solid var(--ooze-green);
+    display: block;
+    text-align: center;
+    max-width: 500px;
+    margin: 50px auto;
+    box-shadow: 10px 10px 0px var(--raph-red);
+    position: relative;
+}
+
+/* Декоративный лозунг под суммой */
+h1:has(+ form)::after, main > h1:last-of-type::after {
+    content: "COWABUNGA!";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    background: var(--mikey-orange);
+    color: #000;
+    font-size: 1.5rem;
+    padding: 2px 15px;
+    border: 3px solid var(--comic-border);
+}
+
+/* Секция "О нас" и боковая панель в стиле комикс-выносок */
+aside {
+    background: #111;
+    border: 4px solid var(--comic-border);
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 50px 0;
+    box-shadow: -8px 8px 0px var(--leo-blue);
+}
+
+header h1 {
+    font-family: 'Permanent Marker', sans-serif;
+    color: var(--raph-red);
+    text-align: center;
+    font-size: 3rem;
+}
+
+footer {
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: var(--pizza-crust);
+    border-top: 6px dashed var(--comic-border);
+    padding: 30px;
+    margin-top: 60px;
+}
