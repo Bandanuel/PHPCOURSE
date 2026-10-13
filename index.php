@@ -91,15 +91,19 @@ $totalProducts = (int)$countStmt->fetchColumn();
 $totalPages = (int)ceil($totalProducts / $perPage);
 ?> 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <title>Каталог туристического снаряжения</title>
 </head>
 <body>
     <main>
+        <nav style="margin: 20px 0; text-align: right;">
+            <a href="cart.php" style="font-weight: bold; font-size: 1.1em;">🛒 Корзина</a>
+        </nav>
+
         <div class="beanie">
             <h1>Каталог туристического снаряжения</h1>
         </div>
@@ -170,10 +174,5 @@ $totalPages = (int)ceil($totalProducts / $perPage);
             <?php endfor; ?>
         </div>
     </main>  
-
-     <script>
-    const products = <?= json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
-    </script>
-    <script src="js/app.js"></script>
 </body>
 </html>

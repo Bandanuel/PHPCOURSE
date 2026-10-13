@@ -218,13 +218,13 @@ select:focus, input:focus {
     margin: 5px 0;
 }
 
-/* Кнопка "Заказать": Стилизована под боевую кнопку */
+/* Кнопка: динамический размер под текст, без жесткой высоты */
 button {
-    height: 55px;
+    min-height: 55px;          /* Вместо height: 55px; */
     width: 100%;
     border-radius: 0px;
     font-family: 'Bangers', cursive;
-    font-size: 1.8rem;
+    font-size: 1.6rem;         /* Чуть-чуть уменьшим для длинных слов */
     letter-spacing: 1px;
     text-transform: uppercase;
     background-color: var(--ooze-green);
@@ -234,13 +234,24 @@ button {
     cursor: pointer;
     transition: all 0.1s ease;
     margin-top: 15px;
+    
+    /* Добавляем безопасные отступы и центрирование содержимого */
+    padding: 10px 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;       /* Разрешаем перенос строк */
+    word-break: break-word;    /* Защита от слишком длинных слов */
+    box-sizing: border-box;
 }
 
-button:hover {
-    background-color: var(--pizza-crust);
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px var(--comic-border);
+/* Корректируем кнопку очистки корзины */
+.btn-clear {
+    max-width: 280px;          /* Немного расширим, чтобы текст ложился красивее */
+    background-color: var(--raph-red);
+    color: #fff;
 }
+
 
 /* Физическое утапливание кнопки при клике */
 button:active {
@@ -304,3 +315,302 @@ footer {
     padding: 30px;
     margin-top: 60px;
 }
+
+/* ==========================================================================
+   НОВЫЕ СТИЛИ: КОРЗИНА, ОФОРМЛЕНИЕ И СТРАНИЦА УСПЕХА (TMNT COMIC STYLE)
+   ========================================================================== */
+
+/* Общие контейнеры и заголовки */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 4rem;
+    text-align: center;
+    color: var(--pizza-crust);
+    text-shadow: 3px 3px 0 var(--comic-border), 6px 6px 0 var(--raph-red);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+/* Навигация и ссылки возврата */
+nav a, a[href*="index.php"] {
+    display: inline-block;
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    background: #000;
+    padding: 10px 20px;
+    border: 3px solid var(--ooze-green);
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--comic-border);
+    transition: all 0.1s ease;
+    margin: 10px 0;
+}
+
+nav a:hover, a[href*="index.php"]:hover {
+    background: var(--ooze-green);
+    color: #000;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--comic-border);
+}
+
+/* Ссылки внутри карточек товара в каталоге */
+.product-card h2 a {
+    color: #000;
+    text-decoration: none;
+}
+.product-card h2 a:hover {
+    color: var(--bg-sewer);
+    text-decoration: underline;
+}
+
+/* Сетка корзины */
+.cart {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Карточка товара в корзине / оформлении */
+.cart-item, .checkout-item {
+    padding: 20px;
+    background: #1a1a1a;
+    border: 4px solid var(--comic-border);
+    box-shadow: 8px 8px 0 var(--donnie-purple);
+    position: relative;
+}
+
+.cart-item h2, .checkout-item h3 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    color: var(--ooze-green);
+    margin-top: 0;
+    border-bottom: 3px dashed var(--comic-border);
+    padding-bottom: 10px;
+}
+
+.cart-item p, .checkout-item p {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    color: #eee;
+}
+
+.cart-item strong {
+    color: var(--pizza-crust);
+    font-size: 1.2rem;
+}
+
+/* Контролы изменения количества в корзине */
+.item-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    border: 2px solid var(--comic-border);
+}
+
+.item-controls form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Поля ввода чисел */
+input[type="number"] {
+    height: 40px;
+    width: 80px;
+    background: #fff;
+    color: #000;
+    border: 3px solid var(--comic-border);
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Специфические кнопки действий */
+.cart-actions {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.btn-clear {
+    max-width: 250px;
+    background-color: var(--raph-red);
+    color: #fff;
+}
+.btn-clear:hover {
+    background-color: #b31b26;
+}
+
+.btn-remove {
+    background-color: #444;
+    color: #fff;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+.btn-remove:hover {
+    background-color: var(--raph-red);
+}
+
+.item-controls button[type="submit"]:not(.btn-remove) {
+    height: 40px;
+    margin-top: 0;
+    background-color: var(--leo-blue);
+}
+
+/* Футер корзины (Итоговая панель) */
+.cart-footer {
+    margin-top: 50px;
+    background: #000;
+    border: 5px solid var(--pizza-crust);
+    padding: 30px;
+    text-align: center;
+    box-shadow: 10px 10px 0 var(--mikey-orange);
+}
+
+.cart-footer h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-top: 0;
+    letter-spacing: 2px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn-checkout {
+    font-family: 'Bangers', cursive !important;
+    font-size: 1.8rem !important;
+    background: var(--ooze-green) !important;
+    color: #000 !important;
+    border: 4px solid var(--comic-border) !important;
+    box-shadow: 5px 5px 0 var(--krang-pink) !important;
+}
+.btn-checkout:hover {
+    background: var(--pizza-crust) !important;
+    box-shadow: 7px 7px 0 var(--comic-border) !important;
+}
+
+/* Пустая корзина */
+.cart-empty {
+    text-align: center;
+    padding: 50px;
+    background: #111;
+    border: 4px dashed var(--krang-pink);
+}
+.cart-empty p {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    color: var(--krang-pink);
+}
+
+/* Страница Оформления заказа (checkout.php) */
+.checkout-products {
+    background: rgba(0, 0, 0, 0.5);
+    border: 4px solid var(--comic-border);
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: 6px 6px 0 var(--ooze-green);
+}
+
+.checkout-products > p strong {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: var(--pizza-crust);
+}
+
+/* Формы ввода (Имя, Телефон) */
+form p label {
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    color: var(--leo-blue);
+    letter-spacing: 1px;
+}
+
+form input[type="text"], form input[type="tel"] {
+    width: 100%;
+    max-width: 400px;
+    height: 48px;
+    background: #fff;
+    color: #000;
+    border: 4px solid var(--comic-border);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0 15px;
+    margin-top: 5px;
+    box-shadow: 5px 5px 0 var(--donnie-purple);
+    transition: all 0.1s ease;
+}
+
+form input[type="text"]:focus, form input[type="tel"]:focus {
+    outline: none;
+    background: var(--pizza-crust);
+    box-shadow: 7px 7px 0 var(--ooze-green);
+    transform: scale(1.02);
+}
+
+/* Страница успешного заказа (order_success.php) */
+body:has(p > strong[class*=""]) { /* кастомный хак под разметку */ }
+
+h1 + p strong {
+    color: var(--ooze-green);
+}
+
+/* Пагинация (на главной) */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 40px 0;
+}
+
+.pagination a {
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 8px 16px !important;
+    color: #fff !important;
+    background: #000 !important; /* Принудительно красим фон всех обычных страниц в черный */
+    border: 4px solid var(--comic-border) !important;
+    box-shadow: 4px 4px 0 var(--krang-pink) !important;
+    transition: all 0.1s ease;
+    transform: skewX(-5deg);     /* Легкий боевой наклон в стиле остальных инпутов */
+}
+
+/* Стили для активной (забеленной ранее) страницы */
+.pagination a[style*="font-weight: bold"] {
+    background: var(--ooze-green) !important; /* Вместо серого делаем радиоактивно-зеленый */
+    color: #000 !important;                   /* Текст делаем контрастным черным */
+    box-shadow: 4px 4px 0 var(--donnie-purple) !important;
+    pointer-events: none;                     /* Отключаем кликабельность по текущей странице */
+}
+
+.pagination a:hover {
+    background: var(--pizza-crust) !important;
+    color: #000 !important;
+    transform: translateY(-3px) skewX(-5deg);
+    box-shadow: 6px 6px 0 var(--comic-border) !important;
+}
+
+
+
