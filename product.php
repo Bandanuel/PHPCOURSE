@@ -48,7 +48,6 @@ if (!$product) {
         <?php if ($product['stock'] > 0): ?>
             <p>В наличии: <?= (int)$product['stock'] ?></p>
             
-            <!-- Форма добавления в корзину по методичке -->
             <form method="POST" action="cart.php" style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; display: inline-block;">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="<?= (int)$product['id'] ?>">
